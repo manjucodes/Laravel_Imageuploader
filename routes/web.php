@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ImageController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/dashboard', function () {
+//     return view('Image.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ImageController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   
+    Route::get('/upload', [ImageController::class,'create'])->name('upload');
+    Route::post('/store', [ImageController::class,'store'])->name('store');
+    Route::get('show/{image}', [ImageController::class,'show'])->name('show');
+    Route::delete('/{image}',[ImageController::class,'destroy'])->name('destroy');
+
+    Route::get('/view',function(){
+        return view('Image.view');
+    });
+});
+// Route::get('/upload', 'ImageController@create')->name('upload');
+
+
+
+require __DIR__.'/auth.php';
