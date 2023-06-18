@@ -17,8 +17,9 @@
     <div>
         @yield('content')
     </div>    
+    @if(isset($images))   
     <div class="row">
-        <div class="col-lg-12 margin-tb">
+        <div  class="col-md-12 text-center">
             <div class="pull-left">
                 {{-- <h2>Laravel 9 CRUD (Create, Read, Update and Delete) with Image Upload</h2> --}}
             </div>
@@ -45,11 +46,13 @@
                         <th>Details</th>
                         <th width="280px">Action</th>
                     </tr>
-                    @if(isset($images))
+                    
                     @foreach ($images as $image)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td><img src="/images/{{ $image->image }}" width="100px"></td>
+                        <td><img src="/images/{{ $image->image }}" width="100px">
+                            <p>{{"Uploaded On : " .$image->created_at->format('m/d/Y')}}</p>
+                        </td>
                         <td>{{ $image->name }}</td>
                         <td>{{ $image->detail }}</td>
                         <td>
@@ -63,11 +66,10 @@
                         </td>
                     </tr>
                     @endforeach
-                    @endif
-                    NO Images Uploaded Please upload images to See here
                 </table>
                 </div>
             </div>
         </div>
     </div>
+    @endif
 </x-app-layout>
