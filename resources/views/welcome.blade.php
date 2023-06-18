@@ -39,7 +39,7 @@
                 </div>
 
                 <div>
-                    <h1>Welcome to the NANOHEAL IMage uploader</h1>
+                    <h1>Welcome to Image Uploader Application</h1>
                 </div>
 
                 <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">

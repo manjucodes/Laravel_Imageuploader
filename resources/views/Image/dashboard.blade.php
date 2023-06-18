@@ -52,6 +52,7 @@
                         <td>{{ ++$i }}</td>
                         <td><img src="/images/{{ $image->image }}" width="100px">
                             <p>{{"Uploaded On : " .$image->created_at->format('m/d/Y')}}</p>
+                            <p>{{"File Size : " .$image->file_size}}</p>
                         </td>
                         <td>{{ $image->name }}</td>
                         <td>{{ $image->detail }}</td>
